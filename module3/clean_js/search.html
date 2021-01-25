@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <script type="text/javascript">
+        // 1 способ получения параметров с формы
+        /*function getGETParameters(paramStr){
+          return Object.fromEntries(paramStr.split('&').map(e => decodeURI(e).split('=')));
+        }
+        let variables = getGETParameters(window.location.search.substr(1));
+        console.log(variables["fromwhere"]);
+        console.log(variables["towhere"]);*/
+
+        // 2 способ получения данных с формы
+        const urlParams = new URLSearchParams(window.location.search);
+        let fromwhere = urlParams.get('fromwhere');
+        let towhere = urlParams.get('towhere');
+        
+        let el_fromwhere = document.getElementById("fromwhere");
+        let el_towhere = document.getElementById("towhere");
+
+        //let flights = [];
+        
+
+            fetch('http://fligth/api/flight?from='+fromwhere+'&to='+towhere+'&date1=2020-10-01&date2=2020-10-13&passengers=1', {
+                method: 'GET'
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                let flights = JSON.stringify(data);
+                
+                for (let fli of flights) {
+                    for (let fl of fli)
+                        document.write(fl.flights_to + ' -- ' + fl.flights_back + '<br>');
+                }
+
+                console.log("-->>"+flights);
+                //el_fromwhere.innerText=flights["data"]["flights_to"][0]["flight_code"]; //["flights_to"][0]["flight_code"]
+
+            });
+
+            
+    </script>
+
+    <div class="container">
+        <section class="mt-5">
+            <div class="d-flex justify-content-between align-items-start">
+                <h2 class="mb-4">
+                    We found the following flights
+                </h2>
+                <a href="index.html" class="btn btn-sm btn-secondary test-4-bback">Back</a>
+            </div>
+
+            <h5 class="mt-4 mb-3">
+                <span id="fromwhere" class="test-4-fif1">Kazan</span>
+                ->
+                <span id="towhere" class="test-4-fit1">Moscow</span>
+            </h5>
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>Flight</th>
+                    <th>Aircraft</th>
+                    <th>Date and time of departure</th>
+                    <th>Arrival time</th>
+                    <th>Flight time</th>
+                    <th>Cost</th>
+                </tr>
+                <tr class="selected">
+                    <td class="test-4-fn">FC 2144</td>
+                    <td class="test-4-at">Bombardier CRJ200</td>
+                    <td>
+                        <span class="test-4-dd">10-09-2020</span>
+                        at
+                        <span class="test-4-dt">08:00</span>
+                    </td>
+                    <td class="test-4-aatime">09:30</td>
+                    <td class="test-4-ft">
+                        <span class="test-4-fhour">1</span>h
+                        <span class="test-4-fminutes">30</span>min
+                    </td>
+                    <td class="test-4-fp">8000</td>
+                </tr>
+                <tr>
+                    <td class="test-4-fn">FC 2162</td>
+                    <td class="test-4-at">Bombardier CRJ200</td>
+                    <td>
+                        <span class="test-4-dd">10-09-2020</span>
+                        at
+                        <span class="test-4-dt">12:00</span>
+                    </td>
+                    <td class="test-4-aatime">13:30</td>
+                    <td class="test-4-ft">
+                        <span class="test-4-fhour">1</span>h
+                        <span class="test-4-fminutes">30</span>min
+                    </td>
+                    <td class="test-4-fp">8000</td>
+                </tr>
+            </table>
+
+            <h5 class="mt-4 mb-3">
+                <span class="test-4-fif2">Moscow</span>
+                ->
+                <span class="test-4-fit2">Kazan</span>
+            </h5>
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>Flight</th>
+                    <th>Aircraft</th>
+                    <th>Date and time of departure</th>
+                    <th>Arrival time</th>
+                    <th>Flight time</th>
+                    <th>Cost</th>
+                </tr>
+                <tr>
+                    <td class="test-4-fn">FC 2143</td>
+                    <td class="test-4-at">Bombardier CRJ200</td>
+                    <td>
+                        <span class="test-4-dd">20-09-2020</span>
+                        at
+                        <span class="test-4-dt">06:00</span>
+                    </td>
+                    <td class="test-4-aatime">07:30</td>
+                    <td class="test-4-ft">
+                        <span class="test-4-fhour">1</span>h
+                        <span class="test-4-fminutes">30</span>min
+                    </td>
+                    <td class="test-4-fp">9000</td>
+                </tr>
+                <tr class="selected">
+                    <td class="test-4-fn">FC 2161</td>
+                    <td class="test-4-aatime">Bombardier CRJ200</td>
+                    <td>
+                        <span class="test-4-dd">20-09-2020</span>
+                        at
+                        <span class="test-4-dt">10:00</span>
+                    </td>
+                    <td class="test-4-at">11:30</td>
+                    <td class="test-4-ft">
+                        <span class="test-4-fhour">1</span>h
+                        <span class="test-4-fminutes">30</span>min
+                    </td>
+                    <td class="test-4-fp">9000</td>
+                </tr>
+            </table>
+
+            <a href="booking.html" class="btn btn-primary test-4-bgobook mt-4">Go to booking</a>
+        </section>
+
+    </div>
+
+
+</body>
+
+</html>
