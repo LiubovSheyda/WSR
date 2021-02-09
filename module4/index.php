@@ -178,7 +178,7 @@
 
 	<!-- s-content
     ================================================== -->
-    <section class="s-content s-content--top-padding s-content--narrow">
+    <section id="about" class="s-content s-content--top-padding s-content--narrow">
 
         <div class="row narrow">
             <div class="col-full s-content__header">
@@ -231,6 +231,7 @@
                                 <img src="images/thumbs/post/lamp-400.jpg" 
                                      srcset="images/thumbs/post/lamp-400.jpg 1x, images/thumbs/post/lamp-800.jpg 2x" alt="">
                             </a>
+
                         </div>
         
                         <div class="item-entry__text">    
@@ -364,6 +365,8 @@
         </div> <!-- end row -->
 
     </section> <!-- end s-extra -->
+    
+    <?php echo do_shortcode( '[wpforms id="81"]' ); ?>
 
 
     <!-- s-footer

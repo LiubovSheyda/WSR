@@ -107,9 +107,16 @@
     </header> <!-- s-header -->
 
 
+
+
+
     <!-- s-content
     ================================================== -->
     <section class="s-content s-content--top-padding">
+        
+        <?php
+            echo do_shortcode('[qrpage]');
+        ?>
 
         <div class="row narrow">
             <div class="col-full s-content__header" data-aos="fade-up">
@@ -118,6 +125,24 @@
                 <?php echo "sjdhfwieak"; ?>
             </div>
         </div>
+
+
+        <?php                         // Start the Loop.
+            while ( have_posts() ) :
+                the_post();
+    the_post_thumbnail();
+                echo '<h2>';
+    the_title();
+    echo '</h2>';
+    the_content();
+   echo "Rfhnb <img src='#zzzz1'>";
+
+                
+            endwhile;
+
+           
+        ?>
+        
         
         <div class="row entries-wrap add-top-padding wide">
             <div class="entries">
